@@ -4,8 +4,9 @@
 
 > **English TL;DR** — Forge 1.20.1 mod. Turns the Curios "Chainlayer" slots into a real second
 > armor layer: armor attributes, enchantments and set bonuses from those slots all apply **and
-> stack** with your main armor. Requires **Curios** + **Chained Curios**. Put the jar into `mods/`.
-> There is no prebuilt jar in this repo yet — build it yourself with `./gradlew build`.
+> stack** with your main armor. **Download `ArmorLayer-v1.0.0.zip` from
+> [Releases](../../releases/latest), unzip it, and drop the jars from its `mods/` folder into your
+> game's `mods/` folder.** Requires Curios + Chained Curios (both included in the zip).
 
 ---
 
@@ -27,46 +28,37 @@ Chained Curios 在饰品栏里加了 4 个槽（头 / 胸 / 腿 / 脚）。原�
 
 ---
 
-## 安装
+## 安装（4 步）
 
-### 第 1 步：准备前置 mod
+### 第 1 步：下载
 
-| 前置 | 版本 | 说明 |
-|---|---|---|
-| **Minecraft** | 1.20.1 | |
-| **Forge** | 47.x | |
-| **Curios** | 5.14 或更高 | 硬依赖。没有它游戏会直接报缺失依赖，起不来 |
-| **Chained Curios** | 1.1.0 或更高 | 提供那 4 个槽。不装的话本 mod 能加载，但没有槽位可放，等于空转 |
+到 [Releases](../../releases/latest) 页面下载 **`ArmorLayer-v1.0.0.zip`**。
 
-以下可选，不装也能跑：
+这个包里**前置 mod 全都齐了**，不用再去别处找。解压后会看到一个 `mods` 文件夹和一份
+「先看我-安装说明.txt」。
 
-- **Expansion Core** — 想给槽位扩容（每槽多放几件）才需要。
-  注意只有**下界合金核心**会给 Chainlayer 这类"非标准槽"加格子。
-- **ProjectE** — 装了才有宝石盔甲那套兼容。
+（只想更新本 mod 的话，单独下 `armorlayer-1.0.0.jar` 也行。）
 
-### 第 2 步：拿到本 mod 的 jar
+### 第 2 步：把 jar 复制进游戏的 mods 文件夹
 
-⚠️ **本仓库目前没有 Release，也没有打包好的 jar。** 需要自己编译，见文末
-[从源码构建](#从源码构建)，产物是 `build/libs/armorlayer-1.0.0.jar`。
+先找到你游戏的 `mods` 文件夹：
 
-如果你已经从别处拿到了 `armorlayer-1.0.0.jar`，直接进第 3 步。
+- **PCL**：左边点一下你启动的版本 → 「打开文件夹」
+- **HMCL**：版本列表里那一行右边的文件夹图标
+- **官方启动器**：`.minecraft` 文件夹
 
-### 第 3 步：放进 mods 文件夹
+然后把解压出来的 `mods` 文件夹里那 **5 个 `.jar` 全部选中、复制、粘贴进去**。
 
-把 `armorlayer-1.0.0.jar` 复制到游戏实例的 `mods/` 目录下：
+弹出「已有同名文件」就选 **替换**。全部丢进去最省事，用不到的不会影响游戏。
 
-```
-<PCL/HMCL 的版本文件夹>/mods/armorlayer-1.0.0.jar
-```
+> ⚠️ 别让 `mods` 里出现两个 `armorlayer` 开头的 jar（手动改名会产生这种情况）。
+> 同一个 modid 有两个文件会直接崩游戏。
 
-注意**不要**同时放两个不同的 armorlayer jar（比如手动改成 `-1.0.1.jar` 又留下旧的），
-同一个 modid 出现两个文件会直接崩游戏。
+### 第 3 步：启动游戏
 
-### 第 4 步：完全重启游戏
+必须**完全退出再启动**。替换 jar 之后热重载不生效。
 
-必须彻底退出再启动。替换 jar 之后热重载不生效。
-
-### 第 5 步：确认装好了
+### 第 4 步：确认装好了
 
 打开游戏目录下的 `logs/latest.log`，搜 `ArmorLayer`：
 
@@ -83,6 +75,18 @@ Chained Curios 在饰品栏里加了 4 个槽（头 / 胸 / 腿 / 脚）。原�
 ```
 
 看到这条就把这一行连同上下文发到 issue 里。
+
+### 包里的东西 / 环境要求
+
+| 文件 | 必需？ | 说明 |
+|---|---|---|
+| `armorlayer-1.0.0.jar` | ✅ | 本 mod |
+| `curios-forge-5.14.1+1.20.1.jar` | ✅ | 前置。它是**硬依赖**，缺了游戏直接报缺失依赖起不来 |
+| `chainedcurios-1.1.0.jar` | ✅ | 那 4 个格子就是它加的。缺了本 mod 也能加载，但没槽位可放，等于空转 |
+| `expansioncore-1.0.2.jar` | 可选 | 给槽位扩容（每槽多放几件）用。注意只有**下界合金核心**会给 Chainlayer 这类"非标准槽"加格子 |
+| `[等价交换重制版] ProjectE-1.20.1-PE1.0.1.jar` | 可选 | 装了才有宝石盔甲那套兼容 |
+
+环境：**Minecraft 1.20.1 + Forge 47.x**。
 
 ---
 
@@ -167,6 +171,9 @@ A：不冲突。词缀走 `ItemStack#getAttributeModifiers`，本 mod 已经在�
 
 ## 从源码构建
 
+**只想用的话不用看这节** —— 直接下 [Releases](../../releases/latest) 里的 zip 就行。
+这节是给自己改代码、或者想验证产物的人看的。
+
 需要 **JDK 17**。
 
 ```bash
@@ -183,6 +190,10 @@ org.gradle.java.installations.paths=<你的 JDK 17 路径>
 ```
 
 开发时另开一个 Forge 1.20.1 实例、把 `build/libs/*.jar` 丢进它的 `mods/` 调试即可。
+
+> **比对版本时别直接比 jar 的整体 md5。** 构建会往 `META-INF/MANIFEST.MF` 里写入
+> 构建时间（`Implementation-Timestamp`），所以每次构建出来的整个 jar 哈希都不一样，
+> 但所有 `.class` 是逐字节相同的。要比对就解包出来比 class。
 
 ---
 
