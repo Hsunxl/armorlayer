@@ -1,0 +1,54 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+
+# Files from Forge MDK
+forge*changelog.txt
+
+# ---------------------------------------------------------------
+# 以下为项目自身补充（不涉及删除任何本地文件，只是不进版本库）
+# ---------------------------------------------------------------
+
+# MDK 自带的示例模组（用不到的脚手架）。
+# build.gradle 里已有 sourceSets.main.java { exclude 'com/example/examplemod/**' }，
+# 它不会进最终 jar，所以也不需要进仓库。
+/src/main/java/com/example/
+
+# MDK 自带的说明与第三方许可证文本（Forge 的，不是本模组的）
+/README.txt
+/CREDITS.txt
+/LICENSE.txt
+/changelog.txt
+
+# 构建产物与本地配置
+/build/
+/.gradle/
+/run/
+/logs/
+/.vscode/
+*.log
+
+# 发布用凭据（万一以后要发 CurseForge/Modrinth，用的是发布密钥，绝不能进仓库）
+/local.properties
+/secrets.properties
+*.jks
+*.keystore

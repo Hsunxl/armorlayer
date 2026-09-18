@@ -1,0 +1,17 @@
+{
+  "required": false,
+  "package": "com.qingqi.armorlayer.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "mixins": [
+    "PlayerMixin",
+    "CuriosApiMixin",
+    "DynamicStackHandlerMixin",
+    "EnchantmentHelperMixin",
+    "GemFeetMixin",
+    "GemChestMixin",
+    "GemArmorBaseMixin"
+  ],
+  "client": [],
+  "server": []
+}

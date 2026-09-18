@@ -1,0 +1,32 @@
+#!/bin/sh
+# 提交前拦截：扫描暂存区里的密钥 / 本机绝对路径。
+# 启用方式（仓库内执行一次）：
+#     git config core.hooksPath .githooks
+#
+# 找到 Python 就扫，找不到就跳过并提示，绝不因为环境问题让人提交不了。
+
+set -e
+
+root=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
+script="$root/tools/check-secrets.py"
+
+if [ ! -f "$script" ]; then
+    echo "[pre-commit] 未找到 tools/check-secrets.py，跳过扫描。"
+    exit 0
+fi
+
+PY=""
+for cand in python py python3; do
+    if command -v "$cand" >/dev/null 2>&1; then
+        PY="$cand"
+        break
+    fi
+done
+
+if [ -z "$PY" ]; then
+    echo "[pre-commit] 本机没找到 python，跳过密钥扫描。"
+    echo "[pre-commit] 提醒：提交前请自行确认没有把密钥写进代码。"
+    exit 0
+fi
+
+"$PY" "$script"

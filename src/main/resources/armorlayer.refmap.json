@@ -1,0 +1,11 @@
+{
+  "_comment": "Mixin 的 refmap 结构是 mappings.<mixin config 资源名>.<mixin 类全名>.<方法名>。之前少了 config 那一层，映射从未生效。现在注入点直接写 SRG 名 + remap=false，这个文件已不再被使用，仅留作结构参考。",
+  "mappings": {
+    "armorlayer.mixins.json": {
+      "com.qingqi.armorlayer.mixin.PlayerMixin": {
+        "getArmorSlots": "m_6168_",
+        "tick": "m_8119_"
+      }
+    }
+  }
+}
