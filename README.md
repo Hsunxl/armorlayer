@@ -83,8 +83,7 @@ Chained Curios 在饰品栏里加了 4 个槽（头 / 胸 / 腿 / 脚）。原�
 | `armorlayer-1.0.0.jar` | ✅ | 本 mod |
 | `curios-forge-5.14.1+1.20.1.jar` | ✅ | 前置。它是**硬依赖**，缺了游戏直接报缺失依赖起不来 |
 | `chainedcurios-1.1.0.jar` | ✅ | 那 4 个格子就是它加的。缺了本 mod 也能加载，但没槽位可放，等于空转 |
-| `expansioncore-1.0.2.jar` | 可选 | 给槽位扩容（每槽多放几件）用。注意只有**下界合金核心**会给 Chainlayer 这类"非标准槽"加格子 |
-| `[等价交换重制版] ProjectE-1.20.1-PE1.0.1.jar` | 可选 | 装了才有宝石盔甲那套兼容 |
+
 
 环境：**Minecraft 1.20.1 + Forge 47.x**。
 
