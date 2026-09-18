@@ -1,6 +1,6 @@
 # Armor Layer
 
-给 Minecraft 1.20.1 (Forge) 加一层**真正起作用的第二层护甲**。
+给 Minecraft 1.20.1 (Forge) 加上**真正意义上的第二层护甲** ～～不再是装饰性盔甲～～。
 
 > **English TL;DR** — Forge 1.20.1 mod. Turns the Curios "Chainlayer" slots into a real second
 > armor layer: armor attributes, enchantments and set bonuses from those slots all apply **and
@@ -10,12 +10,11 @@
 
 ---
 
-## 它做什么
+## 它做了什么
 
-Chained Curios 在饰品栏里加了 4 个槽（头 / 胸 / 腿 / 脚）。原版只认自己那四个盔甲槽，
-所以往里放盔甲只是个"装饰"——护甲值、附魔、套装被动一概不算。
+Chained Curios模组 在Curios饰品栏里加入了 4 个盔甲槽（头 / 胸 / 腿 / 脚）。但是往里放的盔甲只是个"装饰"——护甲值、附魔、套装被动都不会起效。
 
-装了本 mod 之后，放进这 4 个槽的盔甲会和主盔甲**同时生效、数值真正相加**：
+本模组依赖Chained Curios新加入的装备槽前置，使此第二套盔甲的盔甲会和主盔甲**同时生效、数值真正相加**：
 
 | 效果 | 第二层 |
 |---|---|
@@ -24,7 +23,7 @@ Chained Curios 在饰品栏里加了 4 个槽（头 / 胸 / 腿 / 脚）。原�
 | 荆棘反伤 | ✅ |
 | 水下速掘、水下呼吸、深海漫游者、冰霜行者、灵魂疾行、迅捷潜行 | ✅ |
 | 空中速掘（Ensorcellation） | ✅ |
-| ProjectE 宝石盔甲：夜视、回血、迅疾、飞行、自动上台阶、防火、全套减伤 | ✅ |
+| ProjectE模组兼容：夜视、回血、迅疾、飞行、自动上台阶、防火、全套减伤 | ✅ |
 
 ---
 
@@ -49,16 +48,16 @@ Chained Curios 在饰品栏里加了 4 个槽（头 / 胸 / 腿 / 脚）。原�
 
 然后把解压出来的 `mods` 文件夹里那 **5 个 `.jar` 全部选中、复制、粘贴进去**。
 
-弹出「已有同名文件」就选 **替换**。全部丢进去最省事，用不到的不会影响游戏。
+弹出「已有同名文件」就选 **替换**。
 
-> ⚠️ 别让 `mods` 里出现两个 `armorlayer` 开头的 jar（手动改名会产生这种情况）。
-> 同一个 modid 有两个文件会直接崩游戏。
+全部丢进去最省事，用不到的不会影响游戏。
 
 ### 第 3 步：启动游戏
 
-必须**完全退出再启动**。替换 jar 之后热重载不生效。
+如先前游戏处于打开状态 必须**完全退出再启动**。
 
-### 第 4 步：确认装好了
+### 第 4 步：确认安装成功
+'
 
 打开游戏目录下的 `logs/latest.log`，搜 `ArmorLayer`：
 
@@ -68,21 +67,23 @@ Chained Curios 在饰品栏里加了 4 个槽（头 / 胸 / 腿 / 脚）。原�
 [ArmorLayer] 已生效。第二层盔甲槽：underlayer_head, underlayer_chest, underlayer_legs, underlayer_feet（属性 / 附魔减伤 / 非保护性附魔 / 套装被动均生效）
 ```
 
-**有问题**会打红字，明确告诉你哪一块没织进去：
+**有问题**会打红字，明确告诉你哪一块加载进去：
 
 ```
 [ArmorLayer] Mixin 部分未生效！PlayerMixin=..., CuriosApiMixin=..., DynamicStackHandlerMixin=..., EnchantmentHelperMixin=...
 ```
 
 看到这条就把这一行连同上下文发到 issue 里。
+（～～或者问豆包～～）
+
 
 ### 包里的东西 / 环境要求
 
 | 文件 | 必需？ | 说明 |
 |---|---|---|
 | `armorlayer-1.0.0.jar` | ✅ | 本 mod |
-| `curios-forge-5.14.1+1.20.1.jar` | ✅ | 前置。它是**硬依赖**，缺了游戏直接报缺失依赖起不来 |
-| `chainedcurios-1.1.0.jar` | ✅ | 那 4 个格子就是它加的。缺了本 mod 也能加载，但没槽位可放，等于空转 |
+| `curios-forge-5.14.1+1.20.1.jar` | ✅ | 前置模组|
+| `chainedcurios-1.1.0.jar` | ✅ |  本模组基于该模组路线优化升级，使第二套盔甲成为可能|
 
 
 环境：**Minecraft 1.20.1 + Forge 47.x**。
@@ -98,16 +99,12 @@ Chained Curios 在饰品栏里加了 4 个槽（头 / 胸 / 腿 / 脚）。原�
 ### 2. 找到 Chainlayer 那 4 个槽
 
 界面上会有一个叫 **Chainlayer** 的槽组，4 个格子，图标分别是头盔 / 胸甲 / 护腿 / 靴子形状。
-槽位 ID 是 `underlayer_head` / `underlayer_chest` / `underlayer_legs` / `underlayer_feet`。
 
 看不到的话：Curios 界面里有 **Toggle Visibility** 按钮，用它把这组槽显示出来。
 
 ### 3. 把盔甲拖进去
 
-**部位要对得上**——头盔进 `Chainlayer Head`，胸甲进 `Chainlayer Chest`，以此类推。
-
-本 mod 已经放开了入槽限制，任何对应部位的盔甲都能放（高价的 Allthemodium / Vibranium /
-Unobtainium、ProjectE 宝石盔甲、Draconic 等等都行），不再局限于锁链甲。
+（本模组目前只兼容了ProjectE，Allthemodium非原版盔甲）
 
 ### 4. 验证生效
 
@@ -125,7 +122,7 @@ Unobtainium、ProjectE 宝石盔甲、Draconic 等等都行），不再局限于
 [ArmorLayer] 第二层格数：underlayer_head=1 underlayer_chest=1 ...
 ```
 
-> **别只看 HUD 的护甲图标。** 原版护甲条最多画 20 点（10 个图标 × 2），超出的部分
+> 原版护甲条最多画 20 点（10 个图标），超出的部分
 > 属性确实在，只是不显示。以 `/attribute` 命令的读数为准。
 
 ---
@@ -150,11 +147,8 @@ Unobtainium、ProjectE 宝石盔甲、Draconic 等等都行），不再局限于
 
 ## 常见问题
 
-**Q：护甲图标没变多，是不是没生效？**
-A：先看 `/attribute @s minecraft:generic.armor get` 的数字。HUD 上限 20 点，叠上去的部分不画。
-
 **Q：装备放不进槽里？**
-A：检查部位。头盔只能进 `Chainlayer Head`。另外确认槽组在界面上是显示状态。
+A：可能是模组还未兼容，请提交问题，我做后续兼容
 
 **Q：装了跟没装一样？**
 A：翻 `logs/latest.log`。如果没有 `[ArmorLayer]` 开头的任何一行，说明 jar 没被加载
@@ -168,10 +162,7 @@ A：不冲突。词缀走 `ItemStack#getAttributeModifiers`，本 mod 已经在�
 
 ---
 
-## 从源码构建
-
-**只想用的话不用看这节** —— 直接下 [Releases](../../releases/latest) 里的 zip 就行。
-这节是给自己改代码、或者想验证产物的人看的。
+## 附录：从源码构建
 
 需要 **JDK 17**。
 
